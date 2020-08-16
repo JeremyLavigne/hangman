@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Switch, Route
+} from "react-router-dom"
 
-function App() {
+import Scores from './components/Scores'
+import Rules from './components/Rules'
+import NewGame from './components/NewGame'
+import Footer from './components/Footer'
+import NavBar from './components/NavBar'
+
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Router>
 
-export default App;
+      <NavBar />
+
+      <Switch>
+
+        <Route path="/scores">
+          <Scores />
+        </Route>
+
+        <Route path="/rules">
+          <Rules />
+        </Route>
+
+        <Route path="/">
+          <NewGame />
+        </Route>
+
+      </Switch>
+
+      <Footer />
+
+    </Router>
+  )
+}
+export default App
