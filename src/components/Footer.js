@@ -4,12 +4,12 @@ const Footer = () => {
 
     const style = {
         position: 'fixed',
-        bottom: 5,
-        right: 10
+        bottom: 0,
+        width: '100%'
     }
 
     return (
-      <footer style={style}>
+      <footer className="has-background-grey-dark has-text-white-ter has-text-right" style={style}>
         <i>Hangman, build by Jeremy Lavigne, august 2020</i>
       </footer>
     )

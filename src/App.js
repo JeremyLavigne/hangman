@@ -6,12 +6,11 @@ import {
 
 import Scores from './components/Scores'
 import Rules from './components/Rules'
-import NewGame from './components/NewGame'
 import Footer from './components/Footer'
 import NavBar from './components/NavBar'
 
 
-const App = () => {
+const App = ({language}) => {
 
   return (
     <Router>
@@ -29,7 +28,7 @@ const App = () => {
         </Route>
 
         <Route path="/">
-          <NewGame />
+          Current Game
         </Route>
 
       </Switch>

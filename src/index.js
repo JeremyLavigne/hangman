@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import NewGame from './NewGame'
 
 ReactDOM.render(
-    <App />,
+    <NewGame />,
   document.getElementById('root')
 )

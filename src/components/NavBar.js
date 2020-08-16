@@ -23,12 +23,12 @@ const NavBar = () => {
 
   return (
    
-    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <nav className="navbar has-background-dark" role="navigation" aria-label="main navigation">
 
       <div className="navbar-brand">
-        <Link className="navbar-item" to="/">New Game</Link>
+        <Link className="navbar-item has-text-white" onClick={desactiveBurger} to="/">New Game</Link>
 
-        <a role="button" onClick={clickOnBurger} className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+        <a role="button" onClick={clickOnBurger} className="navbar-burger burger has-text-white" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
