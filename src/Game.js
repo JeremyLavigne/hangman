@@ -8,14 +8,21 @@ import Scores from './components/Scores'
 import Rules from './components/Rules'
 import Footer from './components/Footer'
 import NavBar from './components/NavBar'
+import NewGame from './NewGame'
 
 
-const App = ({language}) => {
+const Game = ({language, firstVisit}) => {
 
+  if (firstVisit) {
+    return (
+      <NewGame />
+    )
+  }
+  
   return (
     <Router>
 
-      <NavBar />
+      <NavBar language={language}/> 
 
       <Switch>
 
@@ -33,9 +40,9 @@ const App = ({language}) => {
 
       </Switch>
 
-      <Footer />
+      <Footer language={language}/> 
 
     </Router>
   )
 }
-export default App
+export default Game

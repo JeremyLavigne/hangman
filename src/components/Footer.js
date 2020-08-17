@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer = ({language}) => {
 
     const style = {
         position: 'fixed',
@@ -9,8 +9,8 @@ const Footer = () => {
     }
 
     return (
-      <footer className="has-background-grey-dark has-text-white-ter has-text-right" style={style}>
-        <i>Hangman, build by Jeremy Lavigne, august 2020</i>
+      <footer className="has-background-grey-dark has-text-white-ter has-text-right is-size-7" style={style}>
+        <i>{language.footer}</i>
       </footer>
     )
 }
