@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Game from './Game'
-import { english } from './languages/languages'
+import App from './App'
 
 
-ReactDOM.render(<Game language={english} firstVisit={true}/>,  document.getElementById('root'))
+ReactDOM.render(<App />,  document.getElementById('root'))

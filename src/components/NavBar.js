@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import { Link } from "react-router-dom"
-import NewGame from '../NewGame'
+
 
 const NavBar = ({language}) => {
 
+  // Add some code to manage opening/closure of the burger
   const [ activeBurger, setActiveBurger ] = useState(false)
-  const [ currentGamePageActive, setCurrentGamePageActive ] = useState(true)
-  const [ newGameLaunched, setNewGameLaunched ] = useState(false)
 
   const burgerIsActive = activeBurger ? 'navbar-menu is-active' : 'navbar-menu'
 
@@ -19,6 +18,14 @@ const NavBar = ({language}) => {
     }
   }
 
+  const desactiveBurger = () => {
+    setActiveBurger(false)
+  }
+
+  // Need to know on what page is the player to adapt content of navbar
+  // => Must offer possibility to go back to the game if player open "Rules" or "Scores" page
+  const [ currentGamePageActive, setCurrentGamePageActive ] = useState(true)
+
   const currentGamePageIsNotActive = () => {
     setCurrentGamePageActive(false)
   }
@@ -26,18 +33,10 @@ const NavBar = ({language}) => {
     setCurrentGamePageActive(true)
   }
 
-  const desactiveBurger = () => {
-       setActiveBurger(false)
-   }
 
-  const launchNewGame = () => {
-    console.log('new game')
-    setNewGameLaunched(true)
-  }
-
+  // Dispatch goods function regarding where the player click
   const clickOnNewGame = () => {
     desactiveBurger()
-    launchNewGame()
   }
   const clickOnBackToGame = () => {
     desactiveBurger()
@@ -48,11 +47,6 @@ const NavBar = ({language}) => {
     currentGamePageIsNotActive()
   }
 
-  if (newGameLaunched){
-    return (
-      <NewGame />
-    )
-  }
 
   return (
    
@@ -60,14 +54,17 @@ const NavBar = ({language}) => {
 
       <div className="navbar-brand">
         {currentGamePageActive ?
-          <div className="navbar-item has-text-white" onClick={clickOnNewGame}>
+          <Link 
+            className="navbar-item has-text-white" 
+            onClick={clickOnNewGame}
+            to="/">
               {language.nav[0]}
-          </div>
+          </Link>
           :
           <Link 
             className="navbar-item has-text-white" 
             onClick={clickOnBackToGame} 
-            to="/">
+            to="/game">
               {language.nav[3]}
           </Link>
         }
