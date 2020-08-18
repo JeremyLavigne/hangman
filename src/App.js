@@ -8,6 +8,7 @@ import Scores from './components/Scores'
 import Rules from './components/Rules'
 import Footer from './components/Footer'
 import NavBar from './components/NavBar'
+import Game from './components/Game'
 import NewGameForm from './components/NewGameForm'
 
 import { english , french, swedish } from './languages/languages'
@@ -23,7 +24,6 @@ const App = () => {
   const NewGame = () => {
 
     const chooseLanguage = (language) => {
-        console.log('choose langage')
         switch (language) {
             case 'french' :
                 setLanguage(french)
@@ -58,13 +58,13 @@ const App = () => {
 
         <Route path="/rules">
           <NavBar language={language}/>
-          <Rules />
+          <Rules language={language}/>
           <Footer language={language}/>
         </Route>
 
         <Route path="/game">
           <NavBar language={language}/>
-          Current Game
+          <Game language={language}/>
           <Footer language={language}/>
         </Route>
 

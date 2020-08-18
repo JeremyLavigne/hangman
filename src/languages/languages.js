@@ -1,5 +1,6 @@
 export const french = {
     name: 'french',
+    nav : [ "Nouvelle Partie", "Meilleurs Scores", "Règles", "Retour au jeu"],
     newGamePage : {
         choose : "Choisissez une langue",
         go: "Jouer",
@@ -9,13 +10,20 @@ export const french = {
         footer : "Source du dictionnaire, avant retouche",
         source : "https://www.freelang.com/dictionnaire/dic-francais.php"
     },
-    nav : [ "Nouvelle Partie", "Meilleurs Scores", "Règles", "Retour au jeu"],
+    rulesPage : {
+        title : "Le Jeu du Pendu",
+        intro : "Decouvrez le mot en un minimum de coup. \nSi vous trouvez, on continue. Mais attention, à la septième erreur c'est perdu!",
+        scoreInfoTitle: "Decompte des points :",
+        scoreInfo : ["Trouvé sans erreur : 100pts", "Trouvé avec 1 erreur : 50pts", "Trouvé avec 2 erreurs : 35pts", "Trouvé avec 3 erreurs : 25pts", "Trouvé avec 4 erreurs : 15pts", "Trouvé avec 5 erreurs : 10pts", "Trouvé avec 6 erreurs : 5pts" ],
+        goodLuck : "Bonne chance!",
+    },
     footer : "Réalisé par Jérémy Lavigne, août 2020"
 }
 
 
 export const english = {
     name: 'english',
+    nav : [ "New Game", "Best Scores", "Rules", "Back to game"],
     newGamePage : {
         choose : "Choose a language",
         go: "Play",
@@ -25,12 +33,19 @@ export const english = {
         footer : "Dictionary source, before formating",
         source : "http://www.mieliestronk.com/wordlist.html"
     },
-    nav : [ "New Game", "Best Scores", "Rules", "Back to game"],
+    rulesPage : {
+        title : "Hangman, the Game",
+        intro : "Find out the word in as few moves as possible. \nIf you find it, a new word appears. But be careful, seven mistakes and it is lost!",
+        scoreInfoTitle: "Points :",
+        scoreInfo : ["Find with no mistake : 100pts", "Find with 1 mistake : 50pts", "Find with 2 mistakes : 35pts", "Find with 3 mistakes : 25pts", "Find with 4 mistakes : 15pts", "Find with 5 mistakes : 10pts", "Find with 6 mistakes : 5pts" ],
+        goodLuck : "Good Luck!",
+    },
     footer : "Build by Jérémy Lavigne, august 2020"
 }
 
 export const swedish = {
     name: 'swedish',
+    nav : [ "Nytt spel", "Bästa poäng", "Regler", "Tillbaka"],
     newGamePage : {
         choose : "Välj ett språk",
         go: "Spela",
@@ -40,6 +55,12 @@ export const swedish = {
         footer : "Ordbokskälla, innan formatering",
         source : "http://blog.lardigsvenska.com/2015/09/1000-mest-anvanda-ord.html"
     },
-    nav : [ "Nytt spel", "Bästa poäng", "Regler", "Tillbaka"],
+    rulesPage : {
+        title : "Hangman",
+        intro : "Upptäck ordet i så få slag som möjligt. \nOm du hittar det kommer ett nytt ord att visas. Men se upp, sju fel och det går förlorat!",
+        scoreInfoTitle: "Poäng :",
+        scoreInfo : ["Hitta utan misstag : 100p", "Hitta med 1 misstag : 50p", "Hitta med 2 misstag : 35p", "Hitta med 3 misstag : 25p", "Hitta med 4 misstag : 15p", "Hitta med 5 misstag : 10p", "Hitta med 6 misstag : 5p" ],
+        goodLuck : "Lycka till!",
+    },
     footer : "Gjord av Jérémy Lavigne, augusti 2020"
 }
