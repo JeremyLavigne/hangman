@@ -12,6 +12,7 @@ import Game from './components/Game'
 import NewGameForm from './components/NewGameForm'
 
 import { english , french, swedish } from './languages/languages'
+import randomWord from './dictionaries/randomWord'
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
   // Go back here every time a new game is launch
 
   const [ language, setLanguage ] = useState(english)
+  const [ secretWord, setSecretWord ] = useState('')
 
   const NewGame = () => {
 
@@ -36,6 +38,7 @@ const App = () => {
                 break
             default : setLanguage(english)
         }
+        setSecretWord(randomWord(language))
     }
 
     return (
@@ -64,7 +67,7 @@ const App = () => {
 
         <Route path="/game">
           <NavBar language={language}/>
-          <Game language={language}/>
+          <Game language={language} secretWord={secretWord}/>
           <Footer language={language}/>
         </Route>
 

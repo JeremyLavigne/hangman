@@ -20,7 +20,10 @@ const randomWord = (language) => {
             lastWordIndex = 55178
     }
 
-    return dictionary.default[Math.floor(Math.random() * Math.floor(lastWordIndex))]
+    const wordNumber = Math.floor(Math.random() * Math.floor(lastWordIndex))
+    console.log('word number ', wordNumber )
+
+    return dictionary.default[wordNumber]
 
 }
 
