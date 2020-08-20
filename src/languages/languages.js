@@ -7,6 +7,7 @@ export const french = {
         title: "Français",
         dictionary : "Plus de 15 000 mots",
         bestScore : "Meilleur score :",
+        pts : "pts",
         footer : "Source du dictionnaire, avant retouche",
         source : "https://www.freelang.com/dictionnaire/dic-francais.php"
     },
@@ -21,6 +22,8 @@ export const french = {
         moves : "Coups restants",
         score : "Score",
         loseMsg : "Dommage !",
+        recordScore : "Vous êtes dans le top 10 ! Entrez votre nom :",
+        noRecord : "Vous n'êtes pas loin du top 10, réessayez ;)",
         winMsg : "Bravo !",
         nextWord : "Nouveau mot"
     },
@@ -40,6 +43,7 @@ export const english = {
         title: "English",
         dictionary : "More than 55 000 words",
         bestScore : "Best score :",
+        pts : "pts",
         footer : "Dictionary source, before formating",
         source : "http://www.mieliestronk.com/wordlist.html"
     },
@@ -54,6 +58,8 @@ export const english = {
         moves : "Remaining moves",
         score : "Score",
         loseMsg : "Too bad !",
+        recordScore : "You are in the top 10 ! Enter your name :",
+        noRecord : "You are not far from the top 10, try again ;)",
         winMsg : "Well Done !",
         nextWord : "New word"
     },
@@ -72,6 +78,7 @@ export const swedish = {
         title: "Svenska",
         dictionary : "Mer än 7 000 ord",
         bestScore : "Bästa poäng :",
+        pts : "pg",
         footer : "Ordbokskälla, innan formatering",
         source : "http://blog.lardigsvenska.com/2015/09/1000-mest-anvanda-ord.html"
     },
@@ -86,6 +93,8 @@ export const swedish = {
         moves : "Återstående",
         score : "Resultat",
         loseMsg : "Så synd !",
+        recordScore : "Du är i topp 10 ! Ange ditt namn :",
+        noRecord : "Du är inte långt från topp 10, försök igen ;)",
         winMsg : "Gratis !",
         nextWord : "Ny ord"
     },

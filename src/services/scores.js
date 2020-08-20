@@ -8,13 +8,13 @@ const getScores = async (languageName) => {
     return response.data
 }
 
-/*
-const create = async (newObject) => {
-    const request = axios.post(baseUrl, newObject)
+const addScore = async (languageName, newObject) => {
+    const request = axios.post(`${baseUrl}${languageName}`, newObject)
     const response = await request
         return response.data
 }
 
+/*
 const update = async  (id, newObject) => {
     const request = axios.put(`${baseUrl}/${id}`, newObject)
     const response = await request
@@ -27,4 +27,4 @@ const deletePerson = async  (id) => {
         return response.data
 }
   */
-export default { getScores}
+export default { getScores, addScore }

@@ -4,7 +4,7 @@
         {"id" : 2, "name" : "Joueur inconnu", "score": 0},
         {"id" : 3, "name" : "Joueur inconnu", "score": 0},
         {"id" : 4, "name" : "Joueur inconnu", "score": 0},
-        {"id" : 5, "name" : "Joueur inconnu", "score": 0},
+        {"id" : 5, "name" : "Jeremy", "score": 200},
         {"id" : 6, "name" : "Joueur inconnu", "score": 0},
         {"id" : 7, "name" : "Joueur inconnu", "score": 0},
         {"id" : 8, "name" : "Joueur inconnu", "score": 0},
@@ -13,7 +13,7 @@
     ],
     "english" : [
         {"id" : 1, "name" : "Unknow Player", "score": 0},
-        {"id" : 2, "name" : "Unknow Player", "score": 0},
+        {"id" : 2, "name" : "Brian", "score": 100},
         {"id" : 3, "name" : "Unknow Player", "score": 0},
         {"id" : 4, "name" : "Unknow Player", "score": 0},
         {"id" : 5, "name" : "Unknow Player", "score": 0},
@@ -31,7 +31,7 @@
         {"id" : 5, "name" : "Okänd spelare", "score": 0},
         {"id" : 6, "name" : "Okänd spelare", "score": 0},
         {"id" : 7, "name" : "Okänd spelare", "score": 0},
-        {"id" : 8, "name" : "Okänd spelare", "score": 0},
+        {"id" : 8, "name" : "Sven", "score": 15},
         {"id" : 9, "name" : "Okänd spelare", "score": 0},
         {"id" : 10, "name" : "Okänd spelare", "score": 0}
     ]

@@ -5,7 +5,15 @@ import franceFlag from '../images/flag/franceFlag.png'
 import swedenFlag from '../images/flag/swedenFlag.png'
 import ukFlag from '../images/flag/ukFlag.png'
 
-const NewGameForm = ({language, chooseLanguage}) => {
+const NewGameForm = ({language, chooseLanguage, bestPlayer, newGameIsAsked}) => {
+
+    let score = 0
+    let player = "Unknown"
+
+    if (!(typeof bestPlayer === 'undefined')) {
+        score = bestPlayer.score
+        player = bestPlayer.name
+    }
 
     const style = {
         bloc : {
@@ -49,10 +57,11 @@ const NewGameForm = ({language, chooseLanguage}) => {
                 <div>
                     <p className="has-text-weight-bold is-strong mb-3">{language.newGamePage.title}</p>
                     <p>{language.newGamePage.dictionary}</p>
-                    <p>{language.newGamePage.bestScore}</p>
+                    <p>{language.newGamePage.bestScore} {score} {language.newGamePage.pts} - ({player})</p>
                 </div>
                 
-                <Link className="button is-link is-medium" style={style.button} 
+                <Link className="button is-link is-medium" style={style.button}
+                        onClick={newGameIsAsked} 
                         to="/game">
                     {language.newGamePage.go}
                 </Link>

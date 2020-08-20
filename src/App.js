@@ -19,7 +19,25 @@ import scoresService from './services/scores'
 
 const App = () => {
 
-  const [language, setLanguage] = useState(english)
+  const [ language, setLanguage] = useState(english)
+  const [ scores, setScores ] = useState([]) // Array with all best scores
+
+  // Get the best scores
+  useEffect(() => {
+    scoresService
+      .getScores(language.name)
+      .then(initialScores => {
+        setScores(initialScores.sort(function(score1, score2) {
+          return score2.score - score1.score;
+        }))
+      })
+
+  }, [language])
+
+  // No useful, try to solve the next issue : If you ask for a new game without changing the language, there is no re-init
+  const newGameIsAsked = () => {
+    setNewGameAsked(true)
+  }
 
   // Define the language at the beginning via the NewGame page
   const NewGame = () => {
@@ -40,7 +58,7 @@ const App = () => {
     }
 
     return (
-      <NewGameForm language={language} chooseLanguage={chooseLanguage} />
+      <NewGameForm language={language} chooseLanguage={chooseLanguage} bestPlayer={scores[0]} newGameIsAsked={newGameIsAsked}/>
     )
   }
 
@@ -53,17 +71,8 @@ const App = () => {
   const [ gameIsLost, setGameIsLost] = useState(false) // Obvious
   const [ gameIsWon, setGameIsWon] = useState(false)
   const [ nextWordAsked, setNextWordAsked] = useState(false) // True if "Next Word" button is clicked after win
+  const [ newGameAsked, setNewGameAsked] = useState(false)
   const [ score, setScore ] = useState(0) // Record score
-  const [ scores, setScores ] = useState([]) // Array with all best scores
-
-  // Get the best scores
-  useEffect(() => {
-    scoresService
-      .getScores(language.name)
-      .then(initialScores => {
-        setScores(initialScores)
-      })
-  }, [language])
 
   // Keep an eye on Win/Lose status
   useEffect(() => {
@@ -86,10 +95,10 @@ const App = () => {
     }
     // Prevent Initialize if player check an other page during the game
     // Initialze only if a new word is asked
-    if (nextWordAsked) {
+    if (nextWordAsked || newGameAsked) {
       initialize()
     }
-  }, [word, nextWordAsked])
+  }, [word, nextWordAsked, newGameAsked])
 
   const nextWordIsAsked = () => {
     nextWord()
@@ -193,7 +202,7 @@ const App = () => {
             count={count}
             clickOnALetter={clickOnALetter}
             score={score}
-            modifiyScore={modifiyScore}
+            scores={scores}
           />
           <Footer language={language} />
         </Route>
