@@ -25,7 +25,7 @@ const Keyboard = ({language, onClick, discoveredLetters, missedLetters}) => {
                     key={letter}
                     onClick={() => onClick(letter)}
                     style={
-                        discoveredLetters.includes(letter) ? style.success : 
+                            discoveredLetters.includes(letter) ? style.success : 
                         missedLetters.includes(letter) ? style.failed : null
                     }
                     disabled={(discoveredLetters.includes(letter) || missedLetters.includes(letter)) ? true : false}

@@ -17,6 +17,13 @@ export const french = {
         scoreInfo : ["Trouvé sans erreur : 100pts", "Trouvé avec 1 erreur : 50pts", "Trouvé avec 2 erreurs : 35pts", "Trouvé avec 3 erreurs : 25pts", "Trouvé avec 4 erreurs : 15pts", "Trouvé avec 5 erreurs : 10pts", "Trouvé avec 6 erreurs : 5pts" ],
         goodLuck : "Bonne chance!",
     },
+    gamePage : {
+        moves : "Coups restants",
+        score : "Score",
+        loseMsg : "Dommage !",
+        winMsg : "Bravo !",
+        nextWord : "Nouveau mot"
+    },
     footer : "Réalisé par Jérémy Lavigne, août 2020"
 }
 
@@ -40,6 +47,13 @@ export const english = {
         scoreInfo : ["Find with no mistake : 100pts", "Find with 1 mistake : 50pts", "Find with 2 mistakes : 35pts", "Find with 3 mistakes : 25pts", "Find with 4 mistakes : 15pts", "Find with 5 mistakes : 10pts", "Find with 6 mistakes : 5pts" ],
         goodLuck : "Good Luck!",
     },
+    gamePage : {
+        moves : "Remaining moves",
+        score : "Score",
+        loseMsg : "Too bad !",
+        winMsg : "Well Done !",
+        nextWord : "New word"
+    },
     footer : "Build by Jérémy Lavigne, august 2020"
 }
 
@@ -61,6 +75,13 @@ export const swedish = {
         scoreInfoTitle: "Poäng :",
         scoreInfo : ["Hitta utan misstag : 100p", "Hitta med 1 misstag : 50p", "Hitta med 2 misstag : 35p", "Hitta med 3 misstag : 25p", "Hitta med 4 misstag : 15p", "Hitta med 5 misstag : 10p", "Hitta med 6 misstag : 5p" ],
         goodLuck : "Lycka till!",
+    },
+    gamePage : {
+        moves : "Återstående",
+        score : "Resultat",
+        loseMsg : "Så synd !",
+        winMsg : "Gratis !",
+        nextWord : "Ny ord"
     },
     footer : "Gjord av Jérémy Lavigne, augusti 2020"
 }
