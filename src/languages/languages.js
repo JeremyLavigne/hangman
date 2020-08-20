@@ -24,6 +24,9 @@ export const french = {
         winMsg : "Bravo !",
         nextWord : "Nouveau mot"
     },
+    scorePage : {
+        title: "Meilleurs Joueurs :"
+    },
     footer : "Réalisé par Jérémy Lavigne, août 2020"
 }
 
@@ -54,6 +57,9 @@ export const english = {
         winMsg : "Well Done !",
         nextWord : "New word"
     },
+    scorePage : {
+        title: "Best players :"
+    },
     footer : "Build by Jérémy Lavigne, august 2020"
 }
 
@@ -82,6 +88,9 @@ export const swedish = {
         loseMsg : "Så synd !",
         winMsg : "Gratis !",
         nextWord : "Ny ord"
+    },
+    scorePage : {
+        title: "Bästa spelare :"
     },
     footer : "Gjord av Jérémy Lavigne, augusti 2020"
 }

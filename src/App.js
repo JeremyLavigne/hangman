@@ -14,13 +14,14 @@ import NewGameForm from './components/NewGameForm'
 import { english, french, swedish } from './languages/languages'
 import randomWord from './dictionaries/randomWord'
 
+import scoresService from './services/scores'
+
 
 const App = () => {
 
   const [language, setLanguage] = useState(english)
 
   // Define the language at the beginning via the NewGame page
-  // Go back here every time a new game is launch
   const NewGame = () => {
 
     const chooseLanguage = (languageName) => {
@@ -44,16 +45,25 @@ const App = () => {
   }
 
   // Variables
-  const [word, setWord] = useState(randomWord(language.name).toUpperCase()) // Effective word to discover
-  const [displayedWord, setDisplayedWord] = useState(word.split('').map(char => '_ ')) // What appears in the user screen
-  const [discoveredLetters, setDiscoveredLetters] = useState([]) // Use to set good letter in the keyboard
-  const [missedLetters, setMissedLetters] = useState([]) // Use to set wrong letter in the keyboard
-  const [count, setCount] = useState(7) // Reamining moves
-  const [gameIsLost, setGameIsLost] = useState(false) // Obvious
-  const [gameIsWon, setGameIsWon] = useState(false)
-  const [nextWordAsked, setNextWordAsked] = useState(false) // True if "Next Word" button is clicked after win
+  const [ word, setWord] = useState(randomWord(language.name).toUpperCase()) // Effective word to discover
+  const [ displayedWord, setDisplayedWord] = useState(word.split('').map(char => '_ ')) // What appears in the user screen
+  const [ discoveredLetters, setDiscoveredLetters] = useState([]) // Use to set good letter in the keyboard
+  const [ missedLetters, setMissedLetters] = useState([]) // Use to set wrong letter in the keyboard
+  const [ count, setCount] = useState(7) // Reamining moves
+  const [ gameIsLost, setGameIsLost] = useState(false) // Obvious
+  const [ gameIsWon, setGameIsWon] = useState(false)
+  const [ nextWordAsked, setNextWordAsked] = useState(false) // True if "Next Word" button is clicked after win
   const [ score, setScore ] = useState(0) // Record score
+  const [ scores, setScores ] = useState([]) // Array with all best scores
 
+  // Get the best scores
+  useEffect(() => {
+    scoresService
+      .getScores(language.name)
+      .then(initialScores => {
+        setScores(initialScores)
+      })
+  }, [language])
 
   // Keep an eye on Win/Lose status
   useEffect(() => {
@@ -89,36 +99,14 @@ const App = () => {
     setWord(randomWord(language.name).toUpperCase())
   }
 
+
+  // Set the right score after a word has been discover
   useEffect(() => {
     if (gameIsWon) {
         modifiyScore()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameIsWon])
-
-
-
-  // Deal with every click on keyboard
-  const clickOnALetter = (letter) => {
-    console.log('you clicked on ', letter)
-
-    // Prevent click if game is already Over
-    if (gameIsLost || gameIsWon) {
-      return null
-    }
-
-    // If the clicked letter is in the word
-    if (word.split('').includes(letter)) {
-
-      // Add it to the Array of already discovered letters
-      setDiscoveredLetters(discoveredLetters.concat(letter))
-      setDisplayedWord(word.split('').map(l => (discoveredLetters.includes(l) || l === letter) ? l : '_ '))
-
-    } else {
-      setMissedLetters(missedLetters.concat(letter))
-      setCount(count - 1)
-    }
-  }
 
   const modifiyScore = () => {
     switch (count) {
@@ -146,7 +134,31 @@ const App = () => {
         default : 
             setScore(score)
     }
-}
+  }
+
+
+
+  // Deal with every click on keyboard
+  const clickOnALetter = (letter) => {
+    console.log('you clicked on ', letter)
+
+    // Prevent click if game is already Over
+    if (gameIsLost || gameIsWon) {
+      return null
+    }
+
+    // If the clicked letter is in the word
+    if (word.split('').includes(letter)) {
+
+      // Add it to the Array of already discovered letters
+      setDiscoveredLetters(discoveredLetters.concat(letter))
+      setDisplayedWord(word.split('').map(l => (discoveredLetters.includes(l) || l === letter) ? l : '_ '))
+
+    } else {
+      setMissedLetters(missedLetters.concat(letter))
+      setCount(count - 1)
+    }
+  }
 
   // 4 routes : "Home" page = "New game" page
 
@@ -157,7 +169,7 @@ const App = () => {
 
         <Route path="/scores">
           <NavBar language={language} />
-          <Scores />
+          <Scores language={language} scores={scores}/>
           <Footer language={language} />
         </Route>
 
