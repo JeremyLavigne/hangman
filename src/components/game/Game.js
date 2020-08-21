@@ -1,6 +1,8 @@
+// Utils 
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
+// Components
 import Keyboard from './Keyboard'
 import GameHeader from './GameHeader'
 import LoseMsg from './LoseMsg'
@@ -8,10 +10,13 @@ import SuccessForm from './SuccessForm'
 import SecretWord from './SecretWord'
 import HangmanImg from './HangmanImg'
 
+// Others
 import { initialize } from '../../reducers/wordReducer'
 
 
-const Game = ({language, scores, saveScore}) => {
+
+// ---------------------------------------------------------------------------------
+const Game = ({language}) => {
 
     const dispatch = useDispatch()
     const wordIsNotDiscoverAtEnd = useSelector(state => state.word.wordIsNotDiscoverAtEnd)
@@ -36,10 +41,14 @@ const Game = ({language, scores, saveScore}) => {
                     <Keyboard language={language} />
 
                     {wordIsNotDiscoverAtEnd ? 
-                        <LoseMsg language={language} tenthScore={scores[9].score} saveScore={saveScore}/> : 
+                        <LoseMsg language={language} /> : 
                             wordIsDiscoverBeforeEnd ? 
-                            <SuccessForm language={language} nextWordIsAsked={nextWordIsAsked}/> : 
-                                null}
+                                <SuccessForm 
+                                    language={language} 
+                                    nextWordIsAsked={nextWordIsAsked}
+                                /> : 
+                                    null
+                    }
 
                 </div>
 

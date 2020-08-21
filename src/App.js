@@ -1,10 +1,10 @@
+// Utils
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  BrowserRouter as Router,
-  Switch, Route
-} from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import scoresService from './services/scores'
 
+// Components
 import Scores from './components/Scores'
 import Rules from './components/Rules'
 import Footer from './components/header-footer/Footer'
@@ -12,44 +12,32 @@ import NavBar from './components/header-footer/NavBar'
 import Game from './components/game/Game'
 import NewGameForm from './components/NewGameForm'
 
+// Others
 import { english, french, swedish } from './languages/languages'
-
-import scoresService from './services/scores'
-import { initialize } from './reducers/wordReducer'
+import { initializeBestPlayers } from './reducers/scoreReducer'
 
 
+
+
+
+// ---------------------------------------------------------------------------------
 const App = () => {
 
   const dispatch = useDispatch()
-
-  const score = useSelector(state => state.score.score) // Should be somewhere else
-
-  const newGameIsAsked = (languageName) => {
-    dispatch(initialize(languageName))
-  }
+  const bestPlayers = useSelector(state => state.score.bestPlayers)
+  const [language, setLanguage] = useState(english)
 
 
-
-
-
-
-  const [ language, setLanguage] = useState(english)
-  const [ scores, setScores ] = useState([]) // Array with all best scores
-
-  // Get the best scores
+  // Get the best scores/players for selected language
   useEffect(() => {
     scoresService
       .getScores(language.name)
-      .then(initialScores => {
-        setScores(initialScores.sort(function(score1, score2) {
-          return score2.score - score1.score;
-        }).slice(0,10))
-      })
+      .then(bestPlayers => dispatch(initializeBestPlayers(bestPlayers)))
 
-  }, [language])
+  }, [dispatch, language])
 
 
-  // Define the language at the beginning via the NewGame page
+  // Home page = New game page -> Define the language use for all app
   const NewGame = () => {
 
     const chooseLanguage = (languageName) => {
@@ -68,30 +56,15 @@ const App = () => {
     }
 
     return (
-      <NewGameForm 
-        language={language} 
-        chooseLanguage={chooseLanguage} 
-        bestPlayer={scores[0]} 
-        newGameIsAsked={newGameIsAsked}
+      <NewGameForm
+        language={language}
+        chooseLanguage={chooseLanguage}
+        bestPlayer={bestPlayers[0]}
       />
     )
   }
 
-  const saveScore = (playername) => {
-    const newObject = {
-      id : (100000 * Math.random()).toFixed(0),
-      name : playername,
-      score : score
-    }
-    scoresService
-      .addScore(language.name, newObject)
-      .then(newObject => {
-        setScores(scores.concat(newObject))
-      })
-  }
 
-
-  // 4 routes : "Home" page = "New game" page
 
   return (
     <Router>
@@ -100,7 +73,7 @@ const App = () => {
 
         <Route path="/scores">
           <NavBar language={language} />
-          <Scores language={language} scores={scores}/>
+          <Scores language={language} bestPlayers={bestPlayers} />
           <Footer language={language} />
         </Route>
 
@@ -112,11 +85,7 @@ const App = () => {
 
         <Route path="/game">
           <NavBar language={language} />
-          <Game
-            language={language}
-            scores={scores}
-            saveScore={saveScore}
-          />
+          <Game language={language} />
           <Footer language={language} />
         </Route>
 

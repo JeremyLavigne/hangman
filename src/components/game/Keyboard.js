@@ -1,18 +1,23 @@
+// Utils
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+// Others
 import { goodLetterIsClicked, badLetterIsClicked, checkIfWordDiscover } from '../../reducers/wordReducer'
 import { increaseScore } from '../../reducers/scoreReducer'
 
 
+
+// ---------------------------------------------------------------------------------
 const Keyboard = ({language}) => {
 
+    const dispatch = useDispatch()
+
+    // Variables
     let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' ]
-    
     if (language.name === "swedish") {
         alphabet = alphabet.concat(['Å', 'Ä', 'Ö' ])
     }
-    
-    const dispatch = useDispatch()
 
     const discoveredLetters = useSelector(state => state.word.discoveredLetters)
     const missedLetters = useSelector(state => state.word.missedLetters)
@@ -20,6 +25,7 @@ const Keyboard = ({language}) => {
     const wordIsNotDiscoverAtEnd = useSelector(state => state.word.wordIsNotDiscoverAtEnd)
     const wordIsDiscoverBeforeEnd = useSelector(state => state.word.wordIsDiscoverBeforeEnd)
     const count = useSelector(state => state.word.count)
+
 
     // Keep an eye on victory
     useEffect(() => {
@@ -30,6 +36,7 @@ const Keyboard = ({language}) => {
 
 
 
+    // Handle click on letter
     const clickOnALetter = (letter) => {
 
         // Prevent click if game is already Over
@@ -59,6 +66,7 @@ const Keyboard = ({language}) => {
 
     return (
         <div className="has-text-centered mt-6">
+
             {alphabet.map(letter => 
                 <button 
                     className="button px-2 mx-1 my-1" 
@@ -73,6 +81,7 @@ const Keyboard = ({language}) => {
                     {letter}
                 </button>)
             }
+            
         </div>
     )
 }

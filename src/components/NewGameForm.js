@@ -1,18 +1,26 @@
+// Utils
 import React from 'react'
-import {Link } from "react-router-dom"
+import { useDispatch } from 'react-redux'
+import { Link } from "react-router-dom"
 
+// Images
 import franceFlag from '../images/flag/franceFlag.png'
 import swedenFlag from '../images/flag/swedenFlag.png'
 import ukFlag from '../images/flag/ukFlag.png'
 
-const NewGameForm = ({language, chooseLanguage, bestPlayer, newGameIsAsked}) => {
+// Others
+import { initialize } from '../reducers/wordReducer'
 
-    let score = 0
-    let player = "Unknown"
 
-    if (!(typeof bestPlayer === 'undefined')) {
-        score = bestPlayer.score
-        player = bestPlayer.name
+
+// ---------------------------------------------------------------------------------
+const NewGameForm = ({language, chooseLanguage, bestPlayer}) => {
+
+    const dispatch = useDispatch()
+
+    // Clear all when a new game is asked
+    const newGameIsAsked = (languageName) => {
+        dispatch(initialize(languageName))
     }
 
     const style = {
@@ -57,7 +65,7 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer, newGameIsAsked}) => 
                 <div>
                     <p className="has-text-weight-bold is-strong mb-3">{language.newGamePage.title}</p>
                     <p>{language.newGamePage.dictionary}</p>
-                    <p>{language.newGamePage.bestScore} {score} {language.newGamePage.pts} - ({player})</p>
+                    <p>{language.newGamePage.bestScore} {bestPlayer.score} {language.newGamePage.pts} - ({bestPlayer.name})</p>
                 </div>
                 
                 <Link className="button is-link is-medium" style={style.button}

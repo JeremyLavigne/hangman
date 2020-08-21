@@ -1,6 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+
+
+// ---------------------------------------------------------------------------------
 const GameHeader = ({language}) => {
 
     const score = useSelector(state => state.score.score)
