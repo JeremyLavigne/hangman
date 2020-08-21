@@ -1,4 +1,6 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
 import Keyboard from './Keyboard'
 import GameHeader from './GameHeader'
 import LoseMsg from './LoseMsg'
@@ -6,46 +8,42 @@ import SuccessForm from './SuccessForm'
 import SecretWord from './SecretWord'
 import HangmanImg from './HangmanImg'
 
+import { initialize } from '../../reducers/wordReducer'
 
-const Game = ({language, word, nextWordIsAsked, count, gameIsLost, gameIsWon, discoveredLetters, displayedWord, missedLetters, clickOnALetter, score, scores, saveScore}) => {
 
+const Game = ({language, scores, saveScore}) => {
 
-    console.log('Word to discover : ', word) // For cheating :)
+    const dispatch = useDispatch()
+    const wordIsNotDiscoverAtEnd = useSelector(state => state.word.wordIsNotDiscoverAtEnd)
+    const wordIsDiscoverBeforeEnd = useSelector(state => state.word.wordIsDiscoverBeforeEnd)
+
+    const nextWordIsAsked = () => {
+        dispatch(initialize(language.name))
+      }
 
     return (
         <div>
             <GameHeader 
                 language={language} 
-                score={score} 
-                count={count} 
             />
 
             <div className="columns is-centered">
 
                 <div className="column is-half-desktop">
 
-                    <SecretWord 
-                        gameIsLost={gameIsLost} 
-                        word={word} 
-                        displayedWord={displayedWord}
-                    />
+                    <SecretWord />
 
-                    <Keyboard 
-                        language={language} 
-                        onClick={clickOnALetter}
-                        discoveredLetters={discoveredLetters}
-                        missedLetters={missedLetters}
-                    />
+                    <Keyboard language={language} />
 
-                    {gameIsLost ? 
-                        <LoseMsg language={language} score={score} tenthScore={scores[9].score} saveScore={saveScore}/> : 
-                            gameIsWon ? 
+                    {wordIsNotDiscoverAtEnd ? 
+                        <LoseMsg language={language} tenthScore={scores[9].score} saveScore={saveScore}/> : 
+                            wordIsDiscoverBeforeEnd ? 
                             <SuccessForm language={language} nextWordIsAsked={nextWordIsAsked}/> : 
                                 null}
 
                 </div>
 
-                <HangmanImg count={count} />
+                <HangmanImg />
             </div>
 
         </div>

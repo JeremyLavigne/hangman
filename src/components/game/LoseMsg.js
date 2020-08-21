@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
+import { useSelector } from 'react-redux'
 
-const LoseMsg = ({language, score, tenthScore, saveScore}) => {
+const LoseMsg = ({language, tenthScore, saveScore}) => {
 
     const [ playerName, setPlayerName ] = useState('')
+    const score = useSelector(state => state.score.score)
 
     console.log(score, tenthScore)
     return (

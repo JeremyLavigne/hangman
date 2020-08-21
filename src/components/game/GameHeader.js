@@ -1,6 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-const GameHeader = ({language, count, score}) => {
+const GameHeader = ({language}) => {
+
+    const score = useSelector(state => state.score.score)
+    const count = useSelector(state => state.word.count)
 
     const style = {
         display : 'flex',

@@ -61,7 +61,7 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer, newGameIsAsked}) => 
                 </div>
                 
                 <Link className="button is-link is-medium" style={style.button}
-                        onClick={newGameIsAsked} 
+                        onClick={() => newGameIsAsked(language.name)} 
                         to="/game">
                     {language.newGamePage.go}
                 </Link>
