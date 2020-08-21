@@ -24,6 +24,7 @@ export const french = {
         loseMsg : "Dommage !",
         recordScore : "Vous êtes dans le top 10 ! Entrez votre nom :",
         noRecord : "Vous n'êtes pas loin du top 10, réessayez ;)",
+        recordName : "Sauvegarder",
         winMsg : "Bravo !",
         nextWord : "Nouveau mot"
     },
@@ -60,6 +61,7 @@ export const english = {
         loseMsg : "Too bad !",
         recordScore : "You are in the top 10 ! Enter your name :",
         noRecord : "You are not far from the top 10, try again ;)",
+        recordName : "Save",
         winMsg : "Well Done !",
         nextWord : "New word"
     },
@@ -95,6 +97,7 @@ export const swedish = {
         loseMsg : "Så synd !",
         recordScore : "Du är i topp 10 ! Ange ditt namn :",
         noRecord : "Du är inte långt från topp 10, försök igen ;)",
+        recordName : "Spara",
         winMsg : "Gratis !",
         nextWord : "Ny ord"
     },

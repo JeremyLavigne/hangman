@@ -29,7 +29,7 @@ const App = () => {
       .then(initialScores => {
         setScores(initialScores.sort(function(score1, score2) {
           return score2.score - score1.score;
-        }))
+        }).slice(0,10))
       })
 
   }, [language])
@@ -145,6 +145,18 @@ const App = () => {
     }
   }
 
+  const saveScore = (playername) => {
+    const newObject = {
+      id : (100000 * Math.random()).toFixed(0),
+      name : playername,
+      score : score
+    }
+    scoresService
+      .addScore(language.name, newObject)
+      .then(newObject => {
+        setScores(scores.concat(newObject))
+      })
+  }
 
 
   // Deal with every click on keyboard
@@ -203,6 +215,7 @@ const App = () => {
             clickOnALetter={clickOnALetter}
             score={score}
             scores={scores}
+            saveScore={saveScore}
           />
           <Footer language={language} />
         </Route>

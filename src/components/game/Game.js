@@ -7,7 +7,7 @@ import SecretWord from './SecretWord'
 import HangmanImg from './HangmanImg'
 
 
-const Game = ({language, word, nextWordIsAsked, count, gameIsLost, gameIsWon, discoveredLetters, displayedWord, missedLetters, clickOnALetter, score, scores}) => {
+const Game = ({language, word, nextWordIsAsked, count, gameIsLost, gameIsWon, discoveredLetters, displayedWord, missedLetters, clickOnALetter, score, scores, saveScore}) => {
 
 
     console.log('Word to discover : ', word) // For cheating :)
@@ -38,7 +38,7 @@ const Game = ({language, word, nextWordIsAsked, count, gameIsLost, gameIsWon, di
                     />
 
                     {gameIsLost ? 
-                        <LoseMsg language={language} score={score} tenthScore={scores[9].score} /> : 
+                        <LoseMsg language={language} score={score} tenthScore={scores[9].score} saveScore={saveScore}/> : 
                             gameIsWon ? 
                             <SuccessForm language={language} nextWordIsAsked={nextWordIsAsked}/> : 
                                 null}

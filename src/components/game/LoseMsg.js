@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-const LoseMsg = ({language, score, tenthScore}) => {
+const LoseMsg = ({language, score, tenthScore, saveScore}) => {
+
+    const [ playerName, setPlayerName ] = useState('')
 
     console.log(score, tenthScore)
     return (
@@ -10,7 +12,8 @@ const LoseMsg = ({language, score, tenthScore}) => {
             </div>
             <div className="is-size-4 has-text-centered">
                 {score > tenthScore ? language.gamePage.recordScore : language.gamePage.noRecord}
-                {score > tenthScore ? <input /> : null}
+                <br />
+                {score > tenthScore ? <input value={playerName} onChange={({target}) => setPlayerName(target.value)} /> : null} <button onClick={() => saveScore(playerName)}>{language.gamePage.recordName}</button>
             </div>
         </div>
     )
