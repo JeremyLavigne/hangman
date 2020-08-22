@@ -49,6 +49,16 @@
       "id": 10,
       "name": "Joueur inconnu",
       "score": 0
+    },
+    {
+      "id": "67768",
+      "name": "Pierre",
+      "score": 50
+    },
+    {
+      "id": "599",
+      "name": "Franck",
+      "score": 35
     }
   ],
   "english": [
@@ -111,6 +121,11 @@
       "id": "51817",
       "name": "Peter",
       "score": 100
+    },
+    {
+      "id": "84596",
+      "name": "Jeremy",
+      "score": 35
     }
   ],
   "swedish": [
@@ -168,6 +183,21 @@
       "id": "14486",
       "name": "Jeremiah",
       "score": 100
+    },
+    {
+      "id": "87757",
+      "name": "Jeremy",
+      "score": 135
+    },
+    {
+      "id": "6712",
+      "name": "John",
+      "score": 100
+    },
+    {
+      "id": "84941",
+      "name": "Emma",
+      "score": 35
     }
   ]
 }

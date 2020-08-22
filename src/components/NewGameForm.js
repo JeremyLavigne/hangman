@@ -10,13 +10,14 @@ import ukFlag from '../images/flag/ukFlag.png'
 
 // Others
 import { initialize } from '../reducers/wordReducer'
+import { scoreToZero } from '../reducers/scoreReducer'
 
 
 
 // ---------------------------------------------------------------------------------
-const NewGameForm = ({language, chooseLanguage, bestPlayer}) => {
+const NewGameForm = ({language, chooseLanguage, bestPlayer, easyModeChoice, easyMode}) => {
 
-    // Check if really necessary ?
+    // Prevent read property of 'undefined'
     if (typeof bestPlayer === 'undefined'){
         bestPlayer = {id:0, name:"unknowm", score:"10000"}
     }
@@ -26,6 +27,7 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer}) => {
     // Clear all when a new game is asked
     const newGameIsAsked = (languageName) => {
         dispatch(initialize(languageName))
+        dispatch(scoreToZero())
     }
 
     const imgStyle = {
@@ -38,7 +40,7 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer}) => {
         position : 'fixed',
         bottom : 0,
         width: '100%'
-      }
+    }
 
     return (
         <div>
@@ -78,6 +80,24 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer}) => {
                     {language.newGamePage.go}
                 </Link>
 
+            </div>
+
+            <div className="field has-text-centered mt-6">
+                <input id="switchRoundedInfo" 
+                    type="checkbox" 
+                    name="switchRoundedInfo" 
+                    className="switch is-rounded is-info"
+                    onChange={easyModeChoice}
+                    checked={easyMode ? 'checked' : null}
+                />
+                <label htmlFor="switchRoundedInfo">
+                    {language.newGamePage.easyMode} 
+                </label>
+                <span 
+                    className="has-text-info has-tooltip-bottom has-tooltip-multiline has-tooltip-info"
+                    data-tooltip={language.newGamePage.easyModeInfo}
+                    style={{cursor:'help'}}
+                > ? </span>
             </div>
 
             <footer className="has-background-grey-dark has-text-right is-size-7" style={footerStyle}>

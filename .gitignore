@@ -5,6 +5,11 @@
 /.pnp
 .pnp.js
 
+/src/dictionaries
+/src/images
+/public/css
+/sass
+
 # testing
 /coverage
 
@@ -21,8 +26,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# others
-/src/dictionaries
-/src/images
-/css

@@ -8,6 +8,8 @@ export const french = {
         dictionary : "Plus de 15 000 mots",
         bestScore : "Meilleur score :",
         pts : "pts",
+        easyMode : "Mode facile",
+        easyModeInfo : "Première lettre offerte et 5 lettres de moins sur le clavier",
         footer : "Source du dictionnaire, avant retouche",
         source : "https://www.freelang.com/dictionnaire/dic-francais.php"
     },
@@ -25,6 +27,7 @@ export const french = {
         recordScore : "Vous êtes dans le top 10 ! Entrez votre nom :",
         noRecord : "Vous n'êtes pas loin du top 10, réessayez ;)",
         recordName : "Sauvegarder",
+        launchNewGame : "Lancez une nouvelle partie ;)",
         winMsg : "Bravo !",
         nextWord : "Nouveau mot"
     },
@@ -45,6 +48,8 @@ export const english = {
         dictionary : "More than 55 000 words",
         bestScore : "Best score :",
         pts : "pts",
+        easyMode : "Easy mode",
+        easyModeInfo : "First Letter given, and 5 letters less on the keyboard",
         footer : "Dictionary source, before formating",
         source : "http://www.mieliestronk.com/wordlist.html"
     },
@@ -62,6 +67,7 @@ export const english = {
         recordScore : "You are in the top 10 ! Enter your name :",
         noRecord : "You are not far from the top 10, try again ;)",
         recordName : "Save",
+        launchNewGame : "Start a new game ;)",
         winMsg : "Well Done !",
         nextWord : "New word"
     },
@@ -81,6 +87,8 @@ export const swedish = {
         dictionary : "Mer än 7 000 ord",
         bestScore : "Bästa poäng :",
         pts : "pg",
+        easyMode : "Enkelt läge",
+        easyModeInfo : "Första bokstaven som erbjuds och 5 bokstäver mindre på tangentbordet",
         footer : "Ordbokskälla, innan formatering",
         source : "http://blog.lardigsvenska.com/2015/09/1000-mest-anvanda-ord.html"
     },
@@ -98,6 +106,7 @@ export const swedish = {
         recordScore : "Du är i topp 10 ! Ange ditt namn :",
         noRecord : "Du är inte långt från topp 10, försök igen ;)",
         recordName : "Spara",
+        launchNewGame : "Starta ett nytt spel ;)",
         winMsg : "Gratis !",
         nextWord : "Ny ord"
     },

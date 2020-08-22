@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 // Others
 import scoresService from '../../services/scores'
-import { addNewPlayer } from '../../reducers/scoreReducer'
+import { addNewPlayer, scoreToZero } from '../../reducers/scoreReducer'
 
 
 // ---------------------------------------------------------------------------------
@@ -13,6 +13,7 @@ const LoseMsg = ({language}) => {
     const dispatch = useDispatch()
     const [ playerName, setPlayerName ] = useState('')
     const [ disableButton, setDisableButton ] = useState(false)
+    const [ nameIsRecorded, setNameIsRecorded ] = useState(false)
 
     const score = useSelector(state => state.score.score)
     const bestPlayers = useSelector(state => state.score.bestPlayers)
@@ -33,6 +34,8 @@ const LoseMsg = ({language}) => {
         })
 
         setDisableButton(true)
+        setNameIsRecorded(true)
+        dispatch(scoreToZero())
     }
 
     return (
@@ -42,31 +45,38 @@ const LoseMsg = ({language}) => {
                 {language.gamePage.loseMsg}
             </div>
 
-            <div className="is-size-4 has-text-centered">
+            {!nameIsRecorded ?
+                <div className="is-size-4 has-text-centered">
 
-                {score > tenthScore ? language.gamePage.recordScore : language.gamePage.noRecord}
+                    {score > tenthScore ? 
+                        language.gamePage.recordScore : language.gamePage.noRecord 
+                    }
 
-                <br />
+                    <br />
 
-                {score > tenthScore ? 
-                    <div>
-                        <input 
-                            value={playerName} 
-                            onChange={({target}) => setPlayerName(target.value)} 
-                        />
-                        <button 
-                            className="button is-succes ml-2" 
-                            onClick={() => saveScore(playerName)}
-                            disabled={disableButton}
-                        >
-                            {language.gamePage.recordName}
-                        </button> 
-                    </div>
-                    : null
-                }
+                    {score > tenthScore ? 
+                        <div>
+                            <input 
+                                value={playerName} 
+                                onChange={({target}) => setPlayerName(target.value)} 
+                            />
+                            <button 
+                                className="button is-succes ml-2" 
+                                onClick={() => saveScore(playerName)}
+                                disabled={disableButton}
+                            >
+                                {language.gamePage.recordName}
+                            </button> 
+                        </div>
+                        : null
+                    }
 
-            </div>
-            
+                </div>
+                :
+                <div className="is-size-5 has-text-centered">
+                    {language.gamePage.launchNewGame}
+                </div>
+            }       
         </div>
     )
 }
