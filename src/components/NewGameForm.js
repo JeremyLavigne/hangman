@@ -16,6 +16,11 @@ import { initialize } from '../reducers/wordReducer'
 // ---------------------------------------------------------------------------------
 const NewGameForm = ({language, chooseLanguage, bestPlayer}) => {
 
+    // Check if really necessary ?
+    if (typeof bestPlayer === 'undefined'){
+        bestPlayer = {id:0, name:"unknowm", score:"10000"}
+    }
+
     const dispatch = useDispatch()
 
     // Clear all when a new game is asked
@@ -23,26 +28,17 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer}) => {
         dispatch(initialize(languageName))
     }
 
-    const style = {
-        bloc : {
-            justifyContent : 'space-around'
-        },
-        img : {
+    const imgStyle = {
             width: '10%',
             minWidth: '64px',
             cursor: 'pointer'
-        },
-        button : {
-            width: '10%',
-            minWidth: '64px',
-            cursor: 'pointer'
-        },
-        footer : {
-            position: 'fixed',
-            bottom: 0,
-            width: '100%'
-        }
     }
+
+    const footerStyle = {
+        position : 'fixed',
+        bottom : 0,
+        width: '100%'
+      }
 
     return (
         <div>
@@ -51,32 +47,43 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer}) => {
                 {language.newGamePage.choose}
             </h2>
 
-            <div className="is-flex m-4" style={style.bloc}>
-                
-                <img onClick={(language) => chooseLanguage('french')} style={style.img} src={franceFlag} alt="frenchFlag" />
+            <div className="is-flex m-4" style={{justifyContent : 'space-around'}}>
+            
+                <img onClick={(language) => chooseLanguage('french')} style={imgStyle} src={franceFlag} alt="frenchFlag" />
 
-                <img onClick={(language) => chooseLanguage('swedish')} style={style.img} src={swedenFlag} alt="swedenFlag" />
+                <img onClick={(language) => chooseLanguage('swedish')} style={imgStyle} src={swedenFlag} alt="swedenFlag" />
 
-                <img onClick={(language) => chooseLanguage('english')} style={style.img} src={ukFlag} alt="ukFlag" />
+                <img onClick={(language) => chooseLanguage('english')} style={imgStyle} src={ukFlag} alt="ukFlag" />
 
             </div>
 
-            <div className="is-flex mt-6" style={style.bloc}>
+            <div className="is-flex mt-6" style={{justifyContent : 'space-around'}}>
+
                 <div>
-                    <p className="has-text-weight-bold is-strong mb-3">{language.newGamePage.title}</p>
+
+                    <p className="has-text-weight-bold is-strong mb-3">
+                        {language.newGamePage.title}
+                    </p>
+
                     <p>{language.newGamePage.dictionary}</p>
+
                     <p>{language.newGamePage.bestScore} {bestPlayer.score} {language.newGamePage.pts} - ({bestPlayer.name})</p>
+
                 </div>
                 
-                <Link className="button is-link is-medium" style={style.button}
-                        onClick={() => newGameIsAsked(language.name)} 
-                        to="/game">
+                <Link className="button is-link is-medium"
+                    onClick={() => newGameIsAsked(language.name)} 
+                    to="/game"
+                >
                     {language.newGamePage.go}
                 </Link>
+
             </div>
 
-            <footer className="has-background-grey-dark has-text-white-ter has-text-right is-size-7" style={style.footer}>
-                <a href={language.newGamePage.source}>{language.newGamePage.footer}</a>
+            <footer className="has-background-grey-dark has-text-right is-size-7" style={footerStyle}>
+
+                <a className="has-text-white-ter" href={language.newGamePage.source}>{language.newGamePage.footer}</a>
+                
             </footer>
 
         </div>

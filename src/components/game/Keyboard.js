@@ -55,27 +55,17 @@ const Keyboard = ({language}) => {
         }
     }
 
-    const style = {
-        success : {
-            backgroundColor : 'green'
-        },
-        failed : {
-            backgroundColor : 'red'
-        }
-    }
-
     return (
         <div className="has-text-centered mt-6">
 
             {alphabet.map(letter => 
                 <button 
-                    className="button px-2 mx-1 my-1" 
+                    className={`button px-2 mx-1 my-1 ${
+                        discoveredLetters.includes(letter) ? "has-background-success"  : 
+                        missedLetters.includes(letter) ? "has-background-danger" : ""
+                    }`}
                     key={letter}
                     onClick={() => clickOnALetter(letter)}
-                    style={
-                            discoveredLetters.includes(letter) ? style.success : 
-                        missedLetters.includes(letter) ? style.failed : null
-                    }
                     disabled={(discoveredLetters.includes(letter) || missedLetters.includes(letter)) ? true : false}
                     >
                     {letter}

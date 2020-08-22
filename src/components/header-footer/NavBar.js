@@ -74,9 +74,11 @@ const NavBar = ({language}) => {
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
+
       </div>
 
       <div id="navbarMenu" className={burgerIsActive} >
+
         <Link 
           className="navbar-item" 
           onClick={clickOnRulesOrScore} 
@@ -90,10 +92,10 @@ const NavBar = ({language}) => {
           to="/rules">
             {language.nav[2]}
         </Link>
+
       </div>
 
     </nav>
-
     )
 }
 

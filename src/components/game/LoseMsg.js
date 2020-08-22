@@ -18,8 +18,6 @@ const LoseMsg = ({language}) => {
     const bestPlayers = useSelector(state => state.score.bestPlayers)
     const tenthScore = bestPlayers[9].score
 
-    console.log('your score : ', score, ' 10th score : ', tenthScore)
-
     const saveScore = (playername) => {
 
         const newPlayer = {
@@ -27,8 +25,6 @@ const LoseMsg = ({language}) => {
           name : playername,
           score : score
         }
-
-        console.log(newPlayer, ' is added')
 
         scoresService
           .addScore(language.name, newPlayer)
@@ -41,12 +37,17 @@ const LoseMsg = ({language}) => {
 
     return (
         <div>
+
             <div className="is-size-3 has-text-centered has-text-danger mt-3 mb-3">
                 {language.gamePage.loseMsg}
             </div>
+
             <div className="is-size-4 has-text-centered">
+
                 {score > tenthScore ? language.gamePage.recordScore : language.gamePage.noRecord}
+
                 <br />
+
                 {score > tenthScore ? 
                     <div>
                         <input 
@@ -61,8 +62,11 @@ const LoseMsg = ({language}) => {
                             {language.gamePage.recordName}
                         </button> 
                     </div>
-                    : null}
+                    : null
+                }
+
             </div>
+            
         </div>
     )
 }

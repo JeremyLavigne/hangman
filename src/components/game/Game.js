@@ -41,13 +41,15 @@ const Game = ({language}) => {
                     <Keyboard language={language} />
 
                     {wordIsNotDiscoverAtEnd ? 
-                        <LoseMsg language={language} /> : 
-                            wordIsDiscoverBeforeEnd ? 
-                                <SuccessForm 
-                                    language={language} 
-                                    nextWordIsAsked={nextWordIsAsked}
-                                /> : 
-                                    null
+                        <LoseMsg language={language} /> 
+                        : 
+                        wordIsDiscoverBeforeEnd ? 
+                            <SuccessForm 
+                                language={language} 
+                                nextWordIsAsked={nextWordIsAsked}
+                            /> 
+                            : 
+                            null
                     }
 
                 </div>

@@ -2,14 +2,17 @@ import React from 'react'
 
 const Footer = ({language}) => {
 
-    const style = {
-        position: 'fixed',
-        bottom: 0,
-        width: '100%'
+    const footerStyle = {
+      position : 'fixed',
+      bottom : 0,
+      width: '100%'
     }
 
     return (
-      <footer className="has-background-grey-dark has-text-white-ter has-text-right is-size-7 mt-4" style={style}>
+      <footer 
+        className="has-background-grey-dark has-text-white-ter has-text-right is-size-7 mt-4" 
+        style={footerStyle}
+      >
         <i>{language.footer}</i>
       </footer>
     )
