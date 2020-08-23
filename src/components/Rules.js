@@ -1,8 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 
-const Rules = ({language}) => {
+const Rules = () => {
 
+    const language = useSelector(state => state.gameMode.language)
+    
     return (
         <div className="ml-2 mr-2">
 

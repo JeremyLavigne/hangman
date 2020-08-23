@@ -9,9 +9,10 @@ import { increaseScore } from '../../reducers/scoreReducer'
 
 
 // ---------------------------------------------------------------------------------
-const Keyboard = ({language}) => {
+const Keyboard = () => {
 
     const dispatch = useDispatch()
+    const language = useSelector(state => state.gameMode.language)
 
     // Variables
     let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' ]
@@ -33,7 +34,6 @@ const Keyboard = ({language}) => {
             dispatch(increaseScore(count))
         }
       }, [count, dispatch, wordIsDiscoverBeforeEnd])
-
 
 
     // Handle click on letter

@@ -1,6 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-const Scores = ({language, bestPlayers}) => {
+const Scores = () => {
+
+    const language = useSelector(state => state.gameMode.language)
+    const bestPlayers = useSelector(state => state.score.bestPlayers)
 
     return (
         <div className="content">

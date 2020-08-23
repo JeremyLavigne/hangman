@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import { Link } from "react-router-dom"
+import { useSelector } from 'react-redux'
 
 
-const NavBar = ({language}) => {
+const NavBar = () => {
 
   // Add some code to manage opening/closure of the burger
   const [ activeBurger, setActiveBurger ] = useState(false)
+  const language = useSelector(state => state.gameMode.language)
 
   const burgerIsActive = activeBurger ? 'navbar-menu is-active' : 'navbar-menu'
 

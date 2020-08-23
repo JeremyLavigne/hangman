@@ -8,16 +8,17 @@ import { addNewPlayer } from '../../reducers/scoreReducer'
 
 
 // ---------------------------------------------------------------------------------
-const LoseMsg = ({language, easyMode}) => {
+const LoseMsg = () => {
 
     const dispatch = useDispatch()
     const [ playerName, setPlayerName ] = useState('')
-    const [ disableButton, setDisableButton ] = useState(false)
-    const [ nameIsRecorded, setNameIsRecorded ] = useState(false)
-
+    const playerNameIsSaved = useSelector(state => state.score.playerNameIsSaved)
+    const easyMode = useSelector(state => state.gameMode.easyMode)
+    const language = useSelector(state => state.gameMode.language)
     const score = useSelector(state => state.score.score)
     const bestPlayers = useSelector(state => state.score.bestPlayers)
     const tenthScore = bestPlayers[9].score
+    const word = useSelector(state => state.word.word)
 
     const saveScore = (playername) => {
 
@@ -32,9 +33,6 @@ const LoseMsg = ({language, easyMode}) => {
           .then(newPlayer => {
             dispatch(addNewPlayer(newPlayer))
         })
-
-        setDisableButton(true)
-        setNameIsRecorded(true)
     }
 
     return (
@@ -44,7 +42,7 @@ const LoseMsg = ({language, easyMode}) => {
                 {language.gamePage.loseMsg}
             </div>
 
-            {!nameIsRecorded ?
+            {!playerNameIsSaved ?
                 <div className="is-size-4 has-text-centered">
 
                     {score > tenthScore ? 
@@ -62,7 +60,6 @@ const LoseMsg = ({language, easyMode}) => {
                             <button 
                                 className="button is-succes ml-2" 
                                 onClick={() => saveScore(playerName)}
-                                disabled={disableButton}
                             >
                                 {language.gamePage.recordName}
                             </button> 
@@ -72,10 +69,12 @@ const LoseMsg = ({language, easyMode}) => {
 
                 </div>
                 :
-                <div className="is-size-5 has-text-centered">
-                    {language.gamePage.launchNewGame}
-                </div>
-            }       
+                null
+            }
+
+            <div className="has-text-centered is-size-6 mt-5">
+                <a href={language.gamePage.googleSearch + word.toLowerCase()} rel="noopener noreferrer" target="_blank" >{language.gamePage.dontUnderstand}</a>
+            </div>
         </div>
     )
 }

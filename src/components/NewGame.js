@@ -1,7 +1,8 @@
 // Utils
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, {useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
+import scoresService from '../services/scores'
 
 // Images
 import franceFlag from '../images/flag/franceFlag.png'
@@ -10,20 +11,37 @@ import ukFlag from '../images/flag/ukFlag.png'
 
 // Others
 import { initialize, setEasyMode } from '../reducers/wordReducer'
-import { scoreToZero } from '../reducers/scoreReducer'
+import { scoreToZero, initializeBestPlayers } from '../reducers/scoreReducer'
+import { chooseLanguage, changeMode } from '../reducers/gameModeReducer'
 
 
-
+ 
 // ---------------------------------------------------------------------------------
-const NewGameForm = ({language, chooseLanguage, bestPlayer, easyModeChoice, easyMode}) => {
-
-    // Prevent read property of 'undefined'
-    if (typeof bestPlayer === 'undefined'){
-        bestPlayer = {id:0, name:"unknowm", score:"10000"}
-    }
+const NewGame = () => {
 
     const dispatch = useDispatch()
+    const easyMode = useSelector(state => state.gameMode.easyMode)
+    const language = useSelector(state => state.gameMode.language)
+    const bestPlayers = useSelector(state => state.score.bestPlayers)
 
+    // Prevent read property of 'undefined'
+    let bestPlayer
+    if (typeof bestPlayers[0] === 'undefined') {
+        bestPlayer = {score:10000, name: "unknown"}
+    } else {
+        bestPlayer = bestPlayers[0]
+    }
+
+    // Get the best scores/players for selected language/mode
+    useEffect(() => {
+        scoresService
+          .getScores(language.name, easyMode)
+          .then(bestPlayers => dispatch(initializeBestPlayers(bestPlayers.sort(function(score1, score2) {
+            return score2.score - score1.score;
+          }).slice(0,10))))
+    
+      }, [dispatch, language, easyMode])
+    
     // Clear all when a new game is asked
     const newGameIsAsked = (languageName) => {
         dispatch(initialize(languageName))
@@ -31,12 +49,12 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer, easyModeChoice, easy
         dispatch(scoreToZero())
     }
 
-    const imgStyle = {
-            width: '10%',
-            minWidth: '64px',
-            cursor: 'pointer'
-    }
 
+    const imgStyle = {
+        width: '10%',
+        minWidth: '64px',
+        cursor: 'pointer'
+    }
     const footerStyle = {
         position : 'fixed',
         bottom : 0,
@@ -52,11 +70,11 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer, easyModeChoice, easy
 
             <div className="is-flex m-4" style={{justifyContent : 'space-around'}}>
             
-                <img onClick={(language) => chooseLanguage('french')} style={imgStyle} src={franceFlag} alt="frenchFlag" />
+                <img onClick={() => dispatch(chooseLanguage('french'))} style={imgStyle} src={franceFlag} alt="frenchFlag" />
 
-                <img onClick={(language) => chooseLanguage('swedish')} style={imgStyle} src={swedenFlag} alt="swedenFlag" />
+                <img onClick={() => dispatch(chooseLanguage('swedish'))} style={imgStyle} src={swedenFlag} alt="swedenFlag" />
 
-                <img onClick={(language) => chooseLanguage('english')} style={imgStyle} src={ukFlag} alt="ukFlag" />
+                <img onClick={() => dispatch(chooseLanguage('english'))} style={imgStyle} src={ukFlag} alt="ukFlag" />
 
             </div>
 
@@ -88,8 +106,7 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer, easyModeChoice, easy
                     type="checkbox" 
                     name="switchRoundedInfo" 
                     className="switch is-rounded is-info"
-                    onChange={easyModeChoice}
-                    checked={easyMode ? 'checked' : null}
+                    onChange={() => dispatch(changeMode())}
                 />
                 <label htmlFor="switchRoundedInfo">
                     {language.newGamePage.easyMode} 
@@ -111,4 +128,4 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer, easyModeChoice, easy
     )
 }
 
-export default NewGameForm
+export default NewGame

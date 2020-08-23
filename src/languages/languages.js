@@ -29,7 +29,9 @@ export const french = {
         recordName : "Sauvegarder",
         launchNewGame : "Parfait! Vous pouvez lancez une nouvelle partie ;)",
         winMsg : "Bravo !",
-        nextWord : "Nouveau mot"
+        nextWord : "Nouveau mot",
+        googleSearch : "https://www.google.com/search?&q=definition+",
+        dontUnderstand : "Vous ne comprenez pas ce mot ?"
     },
     scorePage : {
         title: "Meilleurs Joueurs :"
@@ -69,7 +71,9 @@ export const english = {
         recordName : "Save",
         launchNewGame : "Great! You can start a new game ;)",
         winMsg : "Well Done !",
-        nextWord : "New word"
+        nextWord : "New word",
+        googleSearch : "https://www.google.com/search?&q=meaning+",
+        dontUnderstand : "Don't understand this word?"
     },
     scorePage : {
         title: "Best players :"
@@ -108,7 +112,9 @@ export const swedish = {
         recordName : "Spara",
         launchNewGame : "Perfekt! Du kan starta ett nytt spel ;)",
         winMsg : "Gratis !",
-        nextWord : "Ny ord"
+        nextWord : "Ny ord",
+        googleSearch : "https://www.google.com/search?&q=innebär+",
+        dontUnderstand : "Förstår inte detta ord?"
     },
     scorePage : {
         title: "Bästa spelare :"

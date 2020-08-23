@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux'
 
 
 // ---------------------------------------------------------------------------------
-const GameHeader = ({language}) => {
+const GameHeader = () => {
 
+    const language = useSelector(state => state.gameMode.language)
     const score = useSelector(state => state.score.score)
     const count = useSelector(state => state.word.count)
 

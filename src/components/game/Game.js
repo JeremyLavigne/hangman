@@ -1,6 +1,6 @@
 // Utils 
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector} from 'react-redux'
 
 // Components
 import Keyboard from './Keyboard'
@@ -10,28 +10,20 @@ import SuccessForm from './SuccessForm'
 import SecretWord from './SecretWord'
 import HangmanImg from './HangmanImg'
 
-// Others
-import { initialize, setEasyMode } from '../../reducers/wordReducer'
 
 // ToDo : 
-// - Add something when the word is discover ->
-//     "I don't understand the word" which lead to a google search on another window
 // - Add a message when "New game" is clicked : "Are you sure? your score won't be save"
 // - Add possibility to save the score even if we didn't lose ? 
 //      Or when player launch a new game  : "Are your sure? Do you wanna save your score before starting a new game?"
 
 // ---------------------------------------------------------------------------------
-const Game = ({language, easyMode}) => {
+const Game = () => {
 
-    const dispatch = useDispatch()
     const wordIsNotDiscoverAtEnd = useSelector(state => state.word.wordIsNotDiscoverAtEnd)
     const wordIsDiscoverBeforeEnd = useSelector(state => state.word.wordIsDiscoverBeforeEnd)
     const playerNameIsSaved = useSelector(state => state.score.playerNameIsSaved)
+    const language = useSelector(state => state.gameMode.language)
 
-    const nextWordIsAsked = () => {
-        dispatch(initialize(language.name))
-        dispatch(setEasyMode(easyMode))
-      }
 
     if (playerNameIsSaved) {
         return (
@@ -41,11 +33,10 @@ const Game = ({language, easyMode}) => {
         )
     }
 
+
     return (
         <div>
-            <GameHeader 
-                language={language} 
-            />
+            <GameHeader  />
 
             <div className="columns is-centered">
 
@@ -53,18 +44,11 @@ const Game = ({language, easyMode}) => {
 
                     <SecretWord />
 
-                    <Keyboard language={language} />
+                    <Keyboard />
 
                     {wordIsNotDiscoverAtEnd ? 
-                        <LoseMsg language={language} easyMode={easyMode}/> 
-                        : 
-                        wordIsDiscoverBeforeEnd ? 
-                            <SuccessForm 
-                                language={language} 
-                                nextWordIsAsked={nextWordIsAsked}
-                            /> 
-                            : 
-                            null
+                        <LoseMsg />  :  wordIsDiscoverBeforeEnd ? 
+                            <SuccessForm /> : null
                     }
 
                 </div>
