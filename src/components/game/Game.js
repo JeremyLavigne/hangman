@@ -11,20 +11,35 @@ import SecretWord from './SecretWord'
 import HangmanImg from './HangmanImg'
 
 // Others
-import { initialize } from '../../reducers/wordReducer'
+import { initialize, setEasyMode } from '../../reducers/wordReducer'
 
-
+// ToDo : 
+// - Add something when the word is discover ->
+//     "I don't understand the word" which lead to a google search on another window
+// - Add a message when "New game" is clicked : "Are you sure? your score won't be save"
+// - Add possibility to save the score even if we didn't lose ? 
+//      Or when player launch a new game  : "Are your sure? Do you wanna save your score before starting a new game?"
 
 // ---------------------------------------------------------------------------------
-const Game = ({language}) => {
+const Game = ({language, easyMode}) => {
 
     const dispatch = useDispatch()
     const wordIsNotDiscoverAtEnd = useSelector(state => state.word.wordIsNotDiscoverAtEnd)
     const wordIsDiscoverBeforeEnd = useSelector(state => state.word.wordIsDiscoverBeforeEnd)
+    const playerNameIsSaved = useSelector(state => state.score.playerNameIsSaved)
 
     const nextWordIsAsked = () => {
         dispatch(initialize(language.name))
+        dispatch(setEasyMode(easyMode))
       }
+
+    if (playerNameIsSaved) {
+        return (
+            <div className="is-size-5 has-text-centered mt-4">
+                {language.gamePage.launchNewGame}
+            </div>
+        )
+    }
 
     return (
         <div>
@@ -41,7 +56,7 @@ const Game = ({language}) => {
                     <Keyboard language={language} />
 
                     {wordIsNotDiscoverAtEnd ? 
-                        <LoseMsg language={language} /> 
+                        <LoseMsg language={language} easyMode={easyMode}/> 
                         : 
                         wordIsDiscoverBeforeEnd ? 
                             <SuccessForm 
@@ -60,7 +75,5 @@ const Game = ({language}) => {
         </div>
     )
 }
-
-// ToDo : Add something when the word is discover : "I don't understand the word" which lead to a google search on another window
 
 export default Game

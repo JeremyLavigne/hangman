@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 
 // Others
 import scoresService from '../../services/scores'
-import { addNewPlayer, scoreToZero } from '../../reducers/scoreReducer'
+import { addNewPlayer } from '../../reducers/scoreReducer'
 
 
 // ---------------------------------------------------------------------------------
-const LoseMsg = ({language}) => {
+const LoseMsg = ({language, easyMode}) => {
 
     const dispatch = useDispatch()
     const [ playerName, setPlayerName ] = useState('')
@@ -28,14 +28,13 @@ const LoseMsg = ({language}) => {
         }
 
         scoresService
-          .addScore(language.name, newPlayer)
+          .addScore(language.name, newPlayer, easyMode)
           .then(newPlayer => {
             dispatch(addNewPlayer(newPlayer))
         })
 
         setDisableButton(true)
         setNameIsRecorded(true)
-        dispatch(scoreToZero())
     }
 
     return (

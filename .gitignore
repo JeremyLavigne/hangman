@@ -9,6 +9,7 @@
 /src/images
 /public/css
 /sass
+db.json
 
 # testing
 /coverage

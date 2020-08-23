@@ -20,6 +20,17 @@ export const initialize = (languageName) => {
     }
 }
 
+export const setEasyMode = (easyMode) => {
+
+    if (easyMode){
+        return {
+            type: 'EASY_MODE'
+        }
+    } return {
+        type : 'DO_NOTHING'
+    }
+}
+
 
 export const goodLetterIsClicked = (letter) => {
 
@@ -48,19 +59,46 @@ export const checkIfWordDiscover = () => {
     }
 }
 
+const cancel5letters = (word) => {
+    const missedLetters = []
+    const splitWord = word.split('')
+    const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' ]
+    let i = 0
 
+    while( i < 5) {
+        const letterIndex = Math.floor(Math.random() * Math.floor(alphabet.length))
+        if (!(splitWord.includes(alphabet[letterIndex]))) {
+            missedLetters.push(alphabet[letterIndex])
+            i ++
+        }
+    }
+    return missedLetters
+
+}
 
 const wordReducer = (state = initialState, action) => {
     //console.log('state now: ', state)
     //console.log('action', action)
   
     switch (action.type) {
+        case 'DO_NOTHING' :
+            return state
         case 'INITIALIZE' :
             return {
                 word : action.data.word,
                 displayedWord : action.data.word.split('').map(char => '_ '),
                 discoveredLetters : [],
                 missedLetters : [],
+                wordIsDiscoverBeforeEnd : false,
+                wordIsNotDiscoverAtEnd : false,
+                count : 7
+            }
+        case 'EASY_MODE' :
+            return {
+                word : state.word,
+                displayedWord : state.word.split('').map(l => (l === state.word.split('')[0]) ? l : '_ '),
+                discoveredLetters : [state.word.split('')[0]],
+                missedLetters : cancel5letters(state.word),
                 wordIsDiscoverBeforeEnd : false,
                 wordIsNotDiscoverAtEnd : false,
                 count : 7

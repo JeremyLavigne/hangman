@@ -18,6 +18,9 @@ import { initializeBestPlayers } from './reducers/scoreReducer'
 
 
 
+// TODO : 
+// include language/easyMode into a reducer
+// separate NewGame into his own component
 
 
 // ---------------------------------------------------------------------------------
@@ -28,20 +31,15 @@ const App = () => {
   const [language, setLanguage] = useState(english)
   const [easyMode, setEasyMode] = useState(false)
 
-  // EAsy mode is coming here, change db.json to have 2 different list by language
-  // Then change the get request in order to have to good list of best player.
-  // Easy mode must go down in game component : 
-  // -> first letter given and 5 wrong letters given too
-
   // Get the best scores/players for selected language
   useEffect(() => {
     scoresService
-      .getScores(language.name)
+      .getScores(language.name, easyMode)
       .then(bestPlayers => dispatch(initializeBestPlayers(bestPlayers.sort(function(score1, score2) {
         return score2.score - score1.score;
       }).slice(0,10))))
 
-  }, [dispatch, language])
+  }, [dispatch, language, easyMode])
 
 
   // Home page = New game page -> Define the language use for all app
@@ -98,7 +96,7 @@ const App = () => {
 
         <Route path="/game">
           <NavBar language={language} />
-          <Game language={language} />
+          <Game language={language} easyMode={easyMode}/>
           <Footer language={language} />
         </Route>
 

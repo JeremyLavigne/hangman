@@ -9,7 +9,7 @@ import swedenFlag from '../images/flag/swedenFlag.png'
 import ukFlag from '../images/flag/ukFlag.png'
 
 // Others
-import { initialize } from '../reducers/wordReducer'
+import { initialize, setEasyMode } from '../reducers/wordReducer'
 import { scoreToZero } from '../reducers/scoreReducer'
 
 
@@ -27,6 +27,7 @@ const NewGameForm = ({language, chooseLanguage, bestPlayer, easyModeChoice, easy
     // Clear all when a new game is asked
     const newGameIsAsked = (languageName) => {
         dispatch(initialize(languageName))
+        dispatch(setEasyMode(easyMode))
         dispatch(scoreToZero())
     }
 

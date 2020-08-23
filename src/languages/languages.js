@@ -27,7 +27,7 @@ export const french = {
         recordScore : "Vous êtes dans le top 10 ! Entrez votre nom :",
         noRecord : "Vous n'êtes pas loin du top 10, réessayez ;)",
         recordName : "Sauvegarder",
-        launchNewGame : "Lancez une nouvelle partie ;)",
+        launchNewGame : "Parfait! Vous pouvez lancez une nouvelle partie ;)",
         winMsg : "Bravo !",
         nextWord : "Nouveau mot"
     },
@@ -67,7 +67,7 @@ export const english = {
         recordScore : "You are in the top 10 ! Enter your name :",
         noRecord : "You are not far from the top 10, try again ;)",
         recordName : "Save",
-        launchNewGame : "Start a new game ;)",
+        launchNewGame : "Great! You can start a new game ;)",
         winMsg : "Well Done !",
         nextWord : "New word"
     },
@@ -106,7 +106,7 @@ export const swedish = {
         recordScore : "Du är i topp 10 ! Ange ditt namn :",
         noRecord : "Du är inte långt från topp 10, försök igen ;)",
         recordName : "Spara",
-        launchNewGame : "Starta ett nytt spel ;)",
+        launchNewGame : "Perfekt! Du kan starta ett nytt spel ;)",
         winMsg : "Gratis !",
         nextWord : "Ny ord"
     },

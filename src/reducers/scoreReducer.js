@@ -1,6 +1,7 @@
 const initialState = {
     score : 0,
-    bestPlayers : []
+    bestPlayers : [],
+    playerNameIsSaved : false
 }
 
 export const initializeBestPlayers = (bestPlayers) => {
@@ -69,24 +70,28 @@ const scoreReducer = (state = initialState, action) => {
         case 'INCREASE_SCORE' :
             return {
                 score : state.score + action.data.score,
-                bestPlayers : state.bestPlayers
+                bestPlayers : state.bestPlayers,
+                playerNameIsSaved : state.playerNameIsSaved
             }
         case 'ZERO' :
             return {
                 score : 0,
-                bestPlayers : state.bestPlayers
+                bestPlayers : state.bestPlayers,
+                playerNameIsSaved : state.playerNameIsSaved
             }
         case 'INIT_BEST_PLAYERS' :
             return {
                 score : state.score,
-                bestPlayers : action.data
+                bestPlayers : action.data,
+                playerNameIsSaved : false
             }
         case 'ADD_NEW_PLAYER' :
             return {
                 score : state.score,
                 bestPlayers : state.bestPlayers.concat(action.data.newPlayer).sort(function(score1, score2) {
                     return score2.score - score1.score;
-                  }).slice(0,10)
+                  }).slice(0,10),
+                playerNameIsSaved : true
             } 
       default: return state
     }

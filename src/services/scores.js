@@ -2,29 +2,32 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:3001/'
 
-const getScores = async (languageName) => {
-  const request = axios.get(`${baseUrl}${languageName}`)
+const getScores = async (languageName, easyMode) => {
+  let request
+
+  if (easyMode) {
+    request = axios.get(`${baseUrl}${languageName}-easy`)
+  } else {
+    request = axios.get(`${baseUrl}${languageName}-normal`)
+  }
+
   const response = await request
-    return response.data
+  return response.data
 }
 
-const addScore = async (languageName, newObject) => {
-    const request = axios.post(`${baseUrl}${languageName}`, newObject)
-    const response = await request
-        return response.data
+const addScore = async (languageName, newObject, easyMode) => {
+  let request
+
+  if (easyMode) {
+    request = axios.post(`${baseUrl}${languageName}-easy`, newObject)
+  } else {
+    request = axios.post(`${baseUrl}${languageName}-normal`, newObject)
+  }
+
+  const response = await request
+  return response.data
+
 }
 
-/*
-const update = async  (id, newObject) => {
-    const request = axios.put(`${baseUrl}/${id}`, newObject)
-    const response = await request
-        return response.data
-}
 
-const deletePerson = async  (id) => {
-    const request = axios.delete(`${baseUrl}/${id}`)
-    const response = await request
-        return response.data
-}
-  */
 export default { getScores, addScore }
