@@ -107,6 +107,7 @@ const NewGame = () => {
                     name="switchRoundedInfo" 
                     className="switch is-rounded is-info"
                     onChange={() => dispatch(changeMode())}
+                    checked={easyMode ? "checked" : false }
                 />
                 <label htmlFor="switchRoundedInfo">
                     {language.newGamePage.easyMode} 

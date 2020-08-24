@@ -2,6 +2,9 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { initialize, setEasyMode } from '../../reducers/wordReducer'
 
+
+
+// ---------------------------------------------------------------------------------
 const SuccessForm = () => {
 
     const dispatch = useDispatch()

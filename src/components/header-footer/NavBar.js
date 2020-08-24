@@ -1,9 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+// Disable anchor-is-valid because of the burger balise <a>
 import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 import { useSelector } from 'react-redux'
 
 
+
+
+// ---------------------------------------------------------------------------------
 const NavBar = () => {
 
   // Add some code to manage opening/closure of the burger
@@ -36,10 +40,7 @@ const NavBar = () => {
   }
 
 
-  // Dispatch goods function regarding where the player click
-  const clickOnNewGame = () => {
-    desactiveBurger()
-  }
+  // Activate functions regarding where the player click
   const clickOnBackToGame = () => {
     desactiveBurger()
     currentGamePageIsActive()
@@ -58,7 +59,7 @@ const NavBar = () => {
         {currentGamePageActive ?
           <Link 
             className="navbar-item has-text-white" 
-            onClick={clickOnNewGame}
+            onClick={desactiveBurger}
             to="/">
               {language.nav[0]}
           </Link>

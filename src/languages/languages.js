@@ -9,7 +9,7 @@ export const french = {
         bestScore : "Meilleur score :",
         pts : "pts",
         easyMode : "Mode facile",
-        easyModeInfo : "Première lettre offerte et 5 lettres de moins sur le clavier",
+        easyModeInfo : "Première lettre offerte et quelques lettres de moins sur le clavier",
         footer : "Source du dictionnaire, avant retouche",
         source : "https://www.freelang.com/dictionnaire/dic-francais.php"
     },
@@ -51,7 +51,7 @@ export const english = {
         bestScore : "Best score :",
         pts : "pts",
         easyMode : "Easy mode",
-        easyModeInfo : "First Letter given, and 5 letters less on the keyboard",
+        easyModeInfo : "First Letter given, and some letters less on the keyboard",
         footer : "Dictionary source, before formating",
         source : "http://www.mieliestronk.com/wordlist.html"
     },
@@ -92,7 +92,7 @@ export const swedish = {
         bestScore : "Bästa poäng :",
         pts : "pg",
         easyMode : "Enkelt läge",
-        easyModeInfo : "Första bokstaven som erbjuds och 5 bokstäver mindre på tangentbordet",
+        easyModeInfo : "Första bokstaven som erbjuds och några bokstäver mindre på tangentbordet",
         footer : "Ordbokskälla, innan formatering",
         source : "http://blog.lardigsvenska.com/2015/09/1000-mest-anvanda-ord.html"
     },

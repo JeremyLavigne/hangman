@@ -1,6 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+
+
+// ---------------------------------------------------------------------------------
 const Footer = () => {
 
   const language = useSelector(state => state.gameMode.language)
