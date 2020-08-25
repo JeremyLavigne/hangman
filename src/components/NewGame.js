@@ -53,6 +53,8 @@ const NewGame = () => {
     const imgStyle = {
         width: '10%',
         minWidth: '64px',
+        // fix height issue in safari
+        maxHeight: '64px',
         cursor: 'pointer'
     }
     const footerStyle = {

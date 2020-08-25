@@ -5,11 +5,10 @@
 /.pnp
 .pnp.js
 
-/src/dictionaries
-/src/images
-/public
-/sass
-db.json
+src/dictionaries
+src/images
+public
+sass
 
 # testing
 /coverage
